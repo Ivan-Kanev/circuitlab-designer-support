@@ -2,171 +2,224 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CircuitLab Designer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BudgetFlow Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 :root {
-  --bg1:#f8fafc;
-  --bg2:#eef2ff;
-  --card:#ffffff;
-  --text:#0f172a;
-  --muted:#64748b;
-  --accent:#2563eb;
-  --radius:28px;
+  --accent: #00c389;
+  --bg: #0b0d10;
+  --text: #ffffff;
+  --muted: #a6a6a6;
+  --glass: rgba(255,255,255,0.08);
 }
 
-* { box-sizing:border-box; }
+* { box-sizing: border-box; }
 
 body {
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;
-  color:var(--text);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   background:
-    radial-gradient(900px 450px at 15% -10%, #e0e7ff, transparent),
-    radial-gradient(900px 450px at 85% 10%, #fef3c7, transparent),
-    linear-gradient(var(--bg1),var(--bg2));
-  overflow-x:hidden;
+    radial-gradient(800px 500px at 10% -10%, #163f33, transparent),
+    radial-gradient(900px 600px at 90% 10%, #0f2f28, transparent),
+    var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
 }
 
+/* HEADER */
 header {
-  max-width:1200px;
-  margin:auto;
-  padding:28px 24px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 14px 32px;
+  backdrop-filter: blur(14px);
+  background: rgba(0,0,0,0.35);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+header span { font-weight: 700; }
+
+nav {
+  display: flex;
+  gap: 24px;
 }
 
 nav a {
-  margin-left:24px;
-  text-decoration:none;
-  color:var(--muted);
-  font-weight:500;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  opacity: 0.85;
 }
-nav a:hover { color:var(--text); }
 
+nav a:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+/* LAYOUT */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 140px 24px 80px;
+}
+
+/* HERO */
 .hero {
-  max-width:1200px;
-  margin:auto;
-  padding:100px 24px;
-  display:grid;
-  grid-template-columns:1.1fr 1fr;
-  gap:60px;
-  align-items:center;
+  text-align: center;
+  margin-bottom: 140px;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -120px;
+  background: radial-gradient(circle, rgba(0,195,137,0.15), transparent 70%);
+  filter: blur(60px);
+  animation: glow 6s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+/* APP STORE BUTTON — REUSED IDEA */
+.store-btn-top-left {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 18px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 20px 40px rgba(0,0,0,.35);
+  transition: .3s ease;
+  z-index: 5;
+}
+
+.store-btn-top-left:hover {
+  transform: translateY(-3px) scale(1.02);
 }
 
 .hero h1 {
-  font-size:64px;
-  line-height:1.05;
-  margin-bottom:24px;
+  font-size: clamp(42px, 6vw, 80px);
+  letter-spacing: -0.04em;
 }
 
 .hero p {
-  font-size:20px;
-  color:var(--muted);
-  max-width:520px;
+  max-width: 640px;
+  margin: 16px auto 0;
+  color: var(--muted);
+  font-size: 20px;
 }
 
-.store-btn {
-  margin-top:36px;
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  padding:16px 28px;
-  border-radius:18px;
-  background:black;
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-  box-shadow:0 20px 40px rgba(0,0,0,.25);
-  transition:.3s ease;
-}
-.store-btn:hover {
-  transform:translateY(-3px) scale(1.02);
+/* FEATURE PILLS */
+.pills {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 32px;
 }
 
-.hero-image {
-  background:var(--card);
-  border-radius:var(--radius);
-  padding:22px;
-  box-shadow:0 50px 120px rgba(0,0,0,.22);
-  animation:float 6s ease-in-out infinite;
+.pill {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--glass);
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: pillIn 0.6s ease forwards;
 }
 
-.hero-image img {
-  width:100%;
-  border-radius:20px;
+.pill:nth-child(1){animation-delay:.1s}
+.pill:nth-child(2){animation-delay:.2s}
+.pill:nth-child(3){animation-delay:.3s}
+.pill:nth-child(4){animation-delay:.4s}
+
+/* SECTIONS */
+.section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 160px;
+}
+
+.section.reverse { direction: rtl; }
+.section.reverse * { direction: ltr; }
+
+.text h2 {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.text p {
+  font-size: 18px;
+  color: var(--muted);
+}
+
+/* PHONE */
+.phone {
+  background: linear-gradient(180deg, #1b1e25, #0f1116);
+  border-radius: 36px;
+  padding: 14px;
+  max-width: 320px;
+  margin: auto;
+  box-shadow: 0 50px 120px rgba(0,0,0,0.8);
+  animation: float 6s ease-in-out infinite;
+}
+
+.phone img {
+  width: 100%;
+  border-radius: 28px;
+}
+
+/* DIFFERENT */
+.compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 24px;
+  margin-bottom: 160px;
+}
+
+.compare div {
+  background: var(--glass);
+  padding: 24px;
+  border-radius: 18px;
+}
+
+.compare strong {
+  color: var(--accent);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  color: #666;
+  padding: 40px 0;
+}
+
+/* ANIMATIONS */
+@keyframes glow {
+  from { opacity: .4 }
+  to { opacity: .8 }
 }
 
 @keyframes float {
-  0%,100% { transform:translateY(0); }
-  50% { transform:translateY(-12px); }
+  0%,100% { transform: translateY(0) }
+  50% { transform: translateY(-10px) }
 }
 
-/* WHY SECTION */
-
-.section {
-  max-width:1200px;
-  margin:auto;
-  padding:120px 24px;
-}
-
-.section h2 {
-  font-size:40px;
-  margin-bottom:50px;
-}
-
-.features {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:32px;
-}
-
-.feature {
-  background:var(--card);
-  border-radius:24px;
-  padding:32px;
-  box-shadow:0 30px 80px rgba(0,0,0,.18);
-  transition:.4s ease;
-}
-
-.feature:hover {
-  transform:translateY(-10px);
-}
-
-.feature img {
-  width:100%;
-  border-radius:18px;
-  margin-bottom:20px;
-}
-
-.feature h3 {
-  font-size:22px;
-  margin-bottom:10px;
-}
-
-.feature p {
-  color:var(--muted);
-  line-height:1.6;
-}
-
-/* SCROLL ANIMATIONS */
-.reveal {
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s ease;
-}
-
-.reveal.active {
-  opacity:1;
-  transform:translateY(0);
-}
-
-footer {
-  padding:60px 24px;
-  text-align:center;
-  color:var(--muted);
+@keyframes pillIn {
+  to { opacity:1; transform:none }
 }
 </style>
 </head>
@@ -174,7 +227,7 @@ footer {
 <body>
 
 <header>
-  <strong>CircuitLab Designer</strong>
+  <span>BudgetFlow Studio</span>
   <nav>
     <a href="index.html">Home</a>
     <a href="support.html">Support</a>
@@ -182,75 +235,73 @@ footer {
   </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="reveal">
-    <h1>Build circuits.<br>See electricity.</h1>
-    <p>
-      Interactive challenges that teach how electrical circuits really work —
-      visually, intuitively, offline.
-    </p>
+<div class="container">
 
-    <a class="store-btn" href="#" target="_blank">
-       Download on the App Store
-    </a>
+<div class="hero">
+
+  <!-- APP STORE BUTTON -->
+  <a class="store-btn-top-left"
+     href="https://apps.apple.com/"
+     target="_blank"
+     rel="noopener">
+     Download on the App Store
+  </a>
+
+  <h1>BudgetFlow Studio</h1>
+  <p>Make your money flow.</p>
+
+  <div class="pills">
+    <div class="pill">No accounts</div>
+    <div class="pill">No subscriptions</div>
+    <div class="pill">Privacy-first</div>
+    <div class="pill">Visual analytics</div>
   </div>
+</div>
 
-  <div class="hero-image reveal">
-    <!-- MAIN HERO IMAGE -->
-    <img src="assets/circuit_build.PNG" alt="Circuit builder">
+<div class="section">
+  <div class="text">
+    <h2>Your finances. One glance.</h2>
+    <p>Everything important — instantly visible.</p>
   </div>
-</section>
+  <div class="phone"><img src="assets/dashboard.PNG"></div>
+</div>
 
-<!-- WHY -->
-<section class="section">
-  <h2 class="reveal">Why CircuitLab Designer?</h2>
-
-  <div class="features">
-    <div class="feature reveal">
-      <img src="assets/levels.PNG">
-      <h3>Progressive levels</h3>
-      <p>Carefully designed challenges that build intuition step by step.</p>
-    </div>
-
-    <div class="feature reveal">
-      <img src="assets/hint.PNG">
-      <h3>Smart hints</h3>
-      <p>Get help exactly when needed — no spoilers.</p>
-    </div>
-
-    <div class="feature reveal">
-      <!-- FIXED -->
-      <img src="assets/iconn.PNG">
-      <h3>Instant feedback</h3>
-      <p>See current flow and success the moment your circuit works.</p>
-    </div>
-
-    <div class="feature reveal">
-      <!-- FIXED -->
-      <img src="assets/success.PNG">
-      <h3>Clean UI</h3>
-      <p>Minimal, intuitive interface designed for focus and clarity.</p>
-    </div>
+<div class="section reverse">
+  <div class="text">
+    <h2>See where money goes</h2>
+    <p>Charts designed for humans, not accountants.</p>
   </div>
-</section>
+  <div class="phone"><img src="assets/categories.PNG"></div>
+</div>
 
-<footer>
-  © 2026 CircuitLab Designer
-</footer>
+<div class="section">
+  <div class="text">
+    <h2>Effortless tracking</h2>
+    <p>Every transaction, clear and contextual.</p>
+  </div>
+  <div class="phone"><img src="assets/transactions.PNG"></div>
+</div>
 
-<script>
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('active');
-    }
-  });
-},{ threshold:0.15 });
+<div class="section reverse">
+  <div class="text">
+    <h2>Understand trends</h2>
+    <p>Patterns emerge naturally with time.</p>
+  </div>
+  <div class="phone"><img src="assets/analytics.PNG"></div>
+</div>
 
-reveals.forEach(r => observer.observe(r));
-</script>
+<h2 style="text-align:center;margin-bottom:40px">Why it’s different</h2>
+
+<div class="compare">
+  <div><strong>Others</strong><br>Subscriptions, accounts, clutter</div>
+  <div><strong>BudgetFlow</strong><br>One-time purchase, local-only</div>
+  <div><strong>Others</strong><br>Tables & numbers</div>
+  <div><strong>BudgetFlow</strong><br>Visual-first clarity</div>
+</div>
+
+</div>
+
+<footer>© 2026 BudgetFlow Studio</footer>
 
 </body>
 </html>
