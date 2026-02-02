@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>CircuitLab Designer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 :root {
@@ -13,7 +13,7 @@
   --text:#0f172a;
   --muted:#64748b;
   --accent:#2563eb;
-  --radius:26px;
+  --radius:28px;
 }
 
 * { box-sizing:border-box; }
@@ -23,9 +23,10 @@ body {
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;
   color:var(--text);
   background:
-    radial-gradient(900px 500px at 10% -10%, #e0e7ff, transparent),
-    radial-gradient(900px 500px at 90% 10%, #fef3c7, transparent),
+    radial-gradient(900px 450px at 15% -10%, #e0e7ff, transparent),
+    radial-gradient(900px 450px at 85% 10%, #fef3c7, transparent),
     linear-gradient(var(--bg1),var(--bg2));
+  overflow-x:hidden;
 }
 
 header {
@@ -48,102 +49,106 @@ nav a:hover { color:var(--text); }
 .hero {
   max-width:1200px;
   margin:auto;
-  padding:90px 24px 70px;
+  padding:100px 24px;
   display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:70px;
+  grid-template-columns:1.1fr 1fr;
+  gap:60px;
   align-items:center;
 }
 
-h1 {
-  font-size:clamp(42px,5vw,68px);
+.hero h1 {
+  font-size:64px;
   line-height:1.05;
-  margin-bottom:26px;
+  margin-bottom:24px;
 }
 
-.subtitle {
-  font-size:18px;
+.hero p {
+  font-size:20px;
   color:var(--muted);
   max-width:520px;
-  margin-bottom:36px;
 }
 
-.appstore-btn {
+.store-btn {
+  margin-top:36px;
   display:inline-flex;
   align-items:center;
   gap:12px;
-  background:#000;
-  color:#fff;
-  padding:14px 22px;
-  border-radius:14px;
-  text-decoration:none;
-  box-shadow:0 18px 40px rgba(0,0,0,.25);
-  transition:.3s;
-}
-.appstore-btn:hover { transform:translateY(-3px); }
-
-.hero-card {
-  background:var(--card);
-  padding:18px;
-  border-radius:var(--radius);
-  box-shadow:0 40px 90px rgba(0,0,0,.18);
-}
-.hero-card img {
-  width:100%;
+  padding:16px 28px;
   border-radius:18px;
+  background:black;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  transition:.3s ease;
+}
+.store-btn:hover {
+  transform:translateY(-3px) scale(1.02);
+}
+
+.hero-image {
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:0 50px 120px rgba(0,0,0,.22);
+  animation:float 6s ease-in-out infinite;
+}
+
+.hero-image img {
+  width:100%;
+  border-radius:20px;
+}
+
+@keyframes float {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-12px); }
 }
 
 /* WHY SECTION */
-section {
+
+.section {
   max-width:1200px;
   margin:auto;
-  padding:90px 24px;
+  padding:120px 24px;
 }
 
-.section-title {
-  font-size:34px;
-  margin-bottom:48px;
+.section h2 {
+  font-size:40px;
+  margin-bottom:50px;
 }
 
 .features {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
+  gap:32px;
 }
 
 .feature {
   background:var(--card);
-  border-radius:var(--radius);
-  padding:26px;
-  box-shadow:0 20px 60px rgba(0,0,0,.12);
-  transition:.4s;
+  border-radius:24px;
+  padding:32px;
+  box-shadow:0 30px 80px rgba(0,0,0,.18);
+  transition:.4s ease;
 }
 
 .feature:hover {
   transform:translateY(-10px);
-  box-shadow:0 30px 80px rgba(0,0,0,.18);
 }
 
 .feature img {
   width:100%;
   border-radius:18px;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
 .feature h3 {
+  font-size:22px;
   margin-bottom:10px;
 }
 
-footer {
-  padding:50px 24px;
-  text-align:center;
+.feature p {
   color:var(--muted);
-}
-
-footer a {
-  color:var(--muted);
-  text-decoration:none;
-  margin:0 10px;
+  line-height:1.6;
 }
 
 /* SCROLL ANIMATIONS */
@@ -152,13 +157,16 @@ footer a {
   transform:translateY(40px);
   transition:1s ease;
 }
-.reveal.show {
+
+.reveal.active {
   opacity:1;
-  transform:none;
+  transform:translateY(0);
 }
 
-@media (max-width:900px) {
-  .hero { grid-template-columns:1fr; }
+footer {
+  padding:60px 24px;
+  text-align:center;
+  color:var(--muted);
 }
 </style>
 </head>
@@ -174,24 +182,29 @@ footer a {
   </nav>
 </header>
 
-<main class="hero">
+<!-- HERO -->
+<section class="hero">
   <div class="reveal">
     <h1>Build circuits.<br>See electricity.</h1>
-    <p class="subtitle">
-      Interactive challenges that teach how electrical circuits really work — visually, intuitively, offline.
+    <p>
+      Interactive challenges that teach how electrical circuits really work —
+      visually, intuitively, offline.
     </p>
-    <a class="appstore-btn" href="https://apps.apple.com" target="_blank">
+
+    <a class="store-btn" href="#" target="_blank">
        Download on the App Store
     </a>
   </div>
 
-  <div class="hero-card reveal">
-    <img src="assets/circuit_build.PNG">
+  <div class="hero-image reveal">
+    <!-- MAIN HERO IMAGE -->
+    <img src="assets/circuit_build.PNG" alt="Circuit builder">
   </div>
-</main>
+</section>
 
-<section>
-  <h2 class="section-title reveal">Why CircuitLab Designer?</h2>
+<!-- WHY -->
+<section class="section">
+  <h2 class="reveal">Why CircuitLab Designer?</h2>
 
   <div class="features">
     <div class="feature reveal">
@@ -207,13 +220,15 @@ footer a {
     </div>
 
     <div class="feature reveal">
-      <img src="assets/success.PNG">
+      <!-- FIXED -->
+      <img src="assets/iconn.PNG">
       <h3>Instant feedback</h3>
       <p>See current flow and success the moment your circuit works.</p>
     </div>
 
     <div class="feature reveal">
-      <img src="assets/iconn.PNG">
+      <!-- FIXED -->
+      <img src="assets/success.PNG">
       <h3>Clean UI</h3>
       <p>Minimal, intuitive interface designed for focus and clarity.</p>
     </div>
@@ -221,16 +236,20 @@ footer a {
 </section>
 
 <footer>
-  © 2026 CircuitLab Designer ·
-  <a href="support.html">Support</a> ·
-  <a href="privacy.html">Privacy</a>
+  © 2026 CircuitLab Designer
 </footer>
 
 <script>
-const observer=new IntersectionObserver(e=>{
-  e.forEach(x=>x.isIntersecting&&x.target.classList.add("show"))
-},{threshold:.15});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
+},{ threshold:0.15 });
+
+reveals.forEach(r => observer.observe(r));
 </script>
 
 </body>
