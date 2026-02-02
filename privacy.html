@@ -2,38 +2,104 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Privacy – CircuitLab Designer</title>
+<title>Privacy Policy – CircuitLab Designer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-body {
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;
-  background:linear-gradient(#f8fafc,#eef2ff);
+:root {
+  --bg1:#f8fafc;
+  --bg2:#eef2ff;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --accent:#2563eb;
+  --radius:28px;
 }
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(900px 450px at 15% -10%, #e0e7ff, transparent),
+    radial-gradient(900px 450px at 85% 10%, #fef3c7, transparent),
+    linear-gradient(var(--bg1),var(--bg2));
+  overflow-x:hidden;
+}
+
 header {
   max-width:1200px;
   margin:auto;
   padding:28px 24px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
 }
-nav a { margin-left:24px; text-decoration:none; color:#64748b; }
+
+nav a {
+  margin-left:24px;
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:500;
+}
+nav a:hover { color:var(--text); }
+
 .container {
   max-width:900px;
   margin:auto;
-  padding:100px 24px;
+  padding:100px 24px 120px;
 }
+
 .card {
-  background:#fff;
-  border-radius:26px;
-  padding:44px;
-  box-shadow:0 30px 80px rgba(0,0,0,.15);
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:48px;
+  box-shadow:0 40px 100px rgba(0,0,0,.18);
 }
-h1 { margin-bottom:20px; }
-p { line-height:1.7; color:#475569; }
+
+h1 {
+  font-size:44px;
+  margin-bottom:16px;
+}
+
+h2 {
+  margin-top:48px;
+  font-size:26px;
+}
+
+p, li {
+  font-size:17px;
+  line-height:1.7;
+  color:var(--muted);
+}
+
+ul {
+  padding-left:20px;
+}
+
+.reveal {
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.reveal.active {
+  opacity:1;
+  transform:translateY(0);
+}
+
+footer {
+  text-align:center;
+  padding:60px 24px;
+  color:var(--muted);
+}
 </style>
 </head>
 
 <body>
+
 <header>
   <strong>CircuitLab Designer</strong>
   <nav>
@@ -44,21 +110,70 @@ p { line-height:1.7; color:#475569; }
 </header>
 
 <div class="container">
-  <div class="card">
+  <div class="card reveal">
+
     <h1>Privacy Policy</h1>
     <p>
-      CircuitLab Designer does not collect, store, or share any personal data.
+      CircuitLab Designer respects your privacy. This app is designed to work
+      fully offline and does not collect personal data.
     </p>
+
+    <h2>Data Collection</h2>
     <p>
-      • No accounts<br>
-      • No analytics<br>
-      • No tracking<br>
-      • No ads
+      CircuitLab Designer does <strong>not</strong> collect, store, transmit, or
+      process any personal information.
     </p>
+
+    <ul>
+      <li>No user accounts</li>
+      <li>No analytics</li>
+      <li>No tracking</li>
+      <li>No ads</li>
+      <li>No third-party SDKs</li>
+    </ul>
+
+    <h2>Internet Access</h2>
     <p>
-      The app works fully offline and respects your privacy by design.
+      The app works fully offline. Internet access is not required for normal
+      operation.
     </p>
+
+    <h2>Children’s Privacy</h2>
+    <p>
+      CircuitLab Designer is suitable for all ages and does not knowingly
+      collect any personal data from children.
+    </p>
+
+    <h2>Changes</h2>
+    <p>
+      If this privacy policy changes, updates will be reflected on this page.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      If you have any questions, contact:
+      <br><strong>ikanev@icloud.com</strong>
+    </p>
+
   </div>
 </div>
+
+<footer>
+  © 2026 CircuitLab Designer
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
+},{ threshold:0.15 });
+
+reveals.forEach(r => observer.observe(r));
+</script>
+
 </body>
 </html>
