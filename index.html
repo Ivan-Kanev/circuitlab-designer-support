@@ -1,50 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>CircuitLab Designer – Support</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="marketing.html">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CircuitLab Designer</title>
+
+<meta name="description" content="Learn electrical circuits visually. Build, connect, and see current flow in real time." />
+
 <style>
-/* SAME STYLES — minimal override */
-body { font-family: Inter, system-ui; background:#0b0f14; color:#eaeef5; }
-.section { max-width:800px; margin:auto; padding:160px 24px 120px; }
-.card { background:rgba(255,255,255,0.06); padding:30px; border-radius:18px; }
-a { color:#4fd1c5; text-decoration:none; }
+:root {
+  --bg: radial-gradient(1200px circle at top, #eef3ff, #ffffff);
+  --primary: #2563eb;
+  --text: #0f172a;
+  --muted: #64748b;
+  --card: rgba(255,255,255,0.75);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 24px;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+nav a:hover { color: var(--primary); }
+
+.hero {
+  max-width: 1100px;
+  margin: 80px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+h1 {
+  font-size: 56px;
+  line-height: 1.05;
+}
+
+.tagline {
+  margin-top: 16px;
+  font-size: 20px;
+  color: var(--muted);
+}
+
+.badges {
+  margin-top: 32px;
+}
+
+.badges img {
+  height: 54px;
+  transition: transform 0.3s ease;
+}
+
+.badges img:hover {
+  transform: scale(1.05);
+}
+
+.phone {
+  width: 100%;
+  border-radius: 32px;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.15);
+}
+
+section {
+  max-width: 1100px;
+  margin: 120px auto;
+  padding: 0 24px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 32px;
+}
+
+.card {
+  background: var(--card);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+}
+
+footer {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--muted);
+}
 </style>
 </head>
 
 <body>
 
 <header>
+  <strong>CircuitLab Designer</strong>
   <nav>
-    <strong>CircuitLab Designer</strong>
-    <div>
-      <a href="marketing.html">Home</a>
-      <a href="index.html">Support</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
+    <a href="index.html">Home</a>
+    <a href="support.html">Support</a>
+    <a href="privacy.html">Privacy</a>
   </nav>
 </header>
 
-<section class="section">
-  <div class="card">
-    <h1>Support</h1>
-    <p>If you need help or have feedback, contact us:</p>
-
-    <p><strong>Email:</strong><br>
-      <a href="mailto:ikanev@icloud.com">ikanev@icloud.com</a>
+<div class="hero">
+  <div>
+    <h1>Build circuits.<br>See electricity.</h1>
+    <p class="tagline">
+      Interactive challenges that teach how electrical circuits really work —
+      visually, intuitively, offline.
     </p>
 
-    <p>
-      We usually respond within 24–48 hours.
-    </p>
+    <div class="badges">
+      <img src="assets/appstore.png" alt="Download on the App Store">
+    </div>
+  </div>
+
+  <img src="assets/dashboard.PNG" class="phone" alt="Circuit preview">
+</div>
+
+<section>
+  <h2>Why CircuitLab Designer?</h2>
+  <div class="features">
+    <div class="card">🔌 Build real circuits step by step</div>
+    <div class="card">⚡ See current flow instantly</div>
+    <div class="card">🧠 Learn series & parallel logic</div>
+    <div class="card">📴 Works fully offline</div>
+    <div class="card">🔒 No accounts, no tracking</div>
+    <div class="card">✨ Clean, distraction-free UI</div>
   </div>
 </section>
 
 <footer>
-  © 2026 CircuitLab Designer
+  © 2026 CircuitLab Designer ·
+  <a href="privacy.html">Privacy</a> ·
+  <a href="support.html">Support</a>
 </footer>
 
 </body>
