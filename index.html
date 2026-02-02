@@ -39,7 +39,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 10;
+  z-index: 20;
 }
 
 header span { font-weight: 700; }
@@ -70,9 +70,10 @@ nav a:hover {
 
 /* HERO */
 .hero {
+  position: relative;
   text-align: center;
   margin-bottom: 140px;
-  position: relative;
+  min-height: 520px; /* ensures button has space */
 }
 
 .hero::before {
@@ -85,11 +86,12 @@ nav a:hover {
   z-index: -1;
 }
 
-/* APP STORE BUTTON — REUSED IDEA */
-.store-btn-top-left {
+/* APP STORE BUTTON — GUARANTEED VISIBLE */
+.store-btn-left {
   position: absolute;
-  top: 32px;
-  left: 32px;
+  left: 48px;
+  top: 50%;
+  transform: translateY(-50%);
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -99,18 +101,20 @@ nav a:hover {
   color: #fff;
   text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 20px 40px rgba(0,0,0,.35);
-  transition: .3s ease;
-  z-index: 5;
+  box-shadow: 0 20px 40px rgba(0,0,0,.45);
+  transition: transform .3s ease;
+  z-index: 10;
 }
 
-.store-btn-top-left:hover {
-  transform: translateY(-3px) scale(1.02);
+.store-btn-left:hover {
+  transform: translateY(-53%) scale(1.02);
 }
 
+/* HERO TEXT */
 .hero h1 {
   font-size: clamp(42px, 6vw, 80px);
   letter-spacing: -0.04em;
+  margin-top: 80px;
 }
 
 .hero p {
@@ -240,7 +244,7 @@ footer {
 <div class="hero">
 
   <!-- APP STORE BUTTON -->
-  <a class="store-btn-top-left"
+  <a class="store-btn-left"
      href="https://apps.apple.com/"
      target="_blank"
      rel="noopener">
