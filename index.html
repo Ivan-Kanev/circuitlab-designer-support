@@ -1,190 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>CircuitLab Designer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Build circuits. See electricity. Learn visually with CircuitLab Designer." />
+<meta charset="UTF-8" />
+<title>CircuitLab Designer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Build circuits. See electricity. Learn visually with CircuitLab Designer." />
 
-  <style>
-    :root {
-      --bg: #f5f7fb;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #64748b;
-      --accent: #2563eb;
-      --radius: 20px;
-    }
+<style>
+:root {
+  --bg: #f6f8fc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --radius: 22px;
+}
 
-    * { box-sizing: border-box; }
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, sans-serif;
-      background: radial-gradient(circle at top, #eef2ff, var(--bg));
-      color: var(--text);
-    }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter, sans-serif;
+  background: radial-gradient(circle at top, #eef2ff, var(--bg));
+  color: var(--text);
+  overflow-x: hidden;
+}
 
-    header {
-      max-width: 1200px;
-      margin: auto;
-      padding: 28px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+/* ---------- HEADER ---------- */
+header {
+  max-width: 1200px;
+  margin: auto;
+  padding: 28px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    nav a {
-      margin-left: 24px;
-      text-decoration: none;
-      color: var(--muted);
-      font-weight: 500;
-    }
+nav a {
+  margin-left: 24px;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+}
 
-    nav a:hover { color: var(--text); }
+nav a:hover { color: var(--text); }
 
-    .hero {
-      max-width: 1200px;
-      margin: auto;
-      padding: 80px 24px 40px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 60px;
-      align-items: center;
-    }
+/* ---------- HERO ---------- */
+.hero {
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 24px 40px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 70px;
+  align-items: center;
+}
 
-    h1 {
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1.05;
-      margin-bottom: 24px;
-    }
+.hero-text {
+  animation: fadeUp 1s ease forwards;
+}
 
-    .subtitle {
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 520px;
-    }
+h1 {
+  font-size: clamp(44px, 5vw, 66px);
+  line-height: 1.05;
+  margin-bottom: 22px;
+}
 
-    .hero-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.12);
-      padding: 20px;
-      animation: float 6s ease-in-out infinite;
-    }
+.subtitle {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 520px;
+  margin-bottom: 34px;
+}
 
-    .hero-card img {
-      width: 100%;
-      border-radius: 14px;
-      display: block;
-    }
+/* ---------- APP STORE BUTTON ---------- */
+.appstore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: .2px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
 
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
+.appstore-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 60px rgba(0,0,0,.35);
+}
 
-    section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 60px 24px;
-    }
+.appstore-btn:active {
+  transform: scale(.97);
+}
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
+.appstore-btn svg {
+  width: 22px;
+  height: 22px;
+}
 
-    .feature {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-      transition: transform .3s ease;
-    }
+/* ---------- HERO VISUAL ---------- */
+.hero-visual {
+  position: relative;
+}
 
-    .feature:hover {
-      transform: translateY(-6px);
-    }
+.main-screen {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 40px 90px rgba(0,0,0,.14);
+  animation: float 6s ease-in-out infinite;
+}
 
-    .feature img {
-      width: 56px;
-      margin-bottom: 16px;
-    }
+.main-screen img {
+  width: 100%;
+  border-radius: 16px;
+  display: block;
+}
 
-    footer {
-      padding: 40px 24px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-    }
+/* Floating mini cards */
+.floating {
+  position: absolute;
+  background: var(--card);
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.15);
+  animation: float 5s ease-in-out infinite;
+}
 
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
-      margin: 0 10px;
-    }
-  </style>
+.floating img {
+  width: 120px;
+  border-radius: 12px;
+}
+
+.f1 { top: -30px; right: -30px; animation-delay: .5s; }
+.f2 { bottom: -40px; left: -40px; animation-delay: 1.2s; }
+.f3 { bottom: 40px; right: -50px; animation-delay: 2s; }
+
+/* ---------- FEATURES ---------- */
+section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 24px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+}
+
+.feature {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.08);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 70px rgba(0,0,0,.12);
+}
+
+.feature img {
+  width: 56px;
+  margin-bottom: 16px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  padding: 50px 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+footer a {
+  color: var(--muted);
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <strong>CircuitLab Designer</strong>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="support.html">Support</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-  </header>
 
-  <main class="hero">
-    <div>
-      <h1>Build circuits.<br>See electricity.</h1>
-      <p class="subtitle">
-        Interactive challenges that teach how electrical circuits really work —
-        visually, intuitively, offline.
-      </p>
+<header>
+  <strong>CircuitLab Designer</strong>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="support.html">Support</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+</header>
+
+<main class="hero">
+  <div class="hero-text">
+    <h1>Build circuits.<br>See electricity.</h1>
+    <p class="subtitle">
+      Interactive challenges that teach how electrical circuits really work —
+      visually, intuitively, fully offline.
+    </p>
+
+    <!-- APP STORE BUTTON -->
+    <a class="appstore-btn" href="https://apps.apple.com/" target="_blank">
+      <svg viewBox="0 0 24 24" fill="white">
+        <path d="M16.365 1.43c0 1.14-.415 2.27-1.205 3.14-.79.87-2.1 1.55-3.23 1.46-.14-1.15.41-2.32 1.17-3.12.79-.84 2.18-1.48 3.27-1.48z"/>
+        <path d="M20.2 17.03c-.43.99-.64 1.44-1.2 2.32-.79 1.21-1.9 2.72-3.28 2.73-1.23.01-1.55-.8-3.23-.8-1.69 0-2.04.78-3.27.82-1.38.04-2.43-1.39-3.22-2.6-2.22-3.41-2.45-7.4-1.08-9.5.98-1.51 2.55-2.4 4.01-2.4 1.48 0 2.41.82 3.63.82 1.18 0 1.9-.82 3.62-.82 1.29 0 2.66.7 3.63 1.92-3.2 1.76-2.68 6.29.39 7.51z"/>
+      </svg>
+      Download on the App Store
+    </a>
+  </div>
+
+  <!-- HERO VISUAL -->
+  <div class="hero-visual">
+    <div class="main-screen">
+      <img src="assets/circuit_build.PNG" alt="Circuit build preview">
     </div>
 
-    <div class="hero-card">
-      <img src="assets/hero.PNG" alt="Circuit preview">
+    <div class="floating f1">
+      <img src="assets/levels.PNG">
     </div>
-  </main>
 
-  <section>
-    <h2>Why CircuitLab Designer?</h2>
-    <div class="features">
-      <div class="feature">
-        <img src="assets/circuit_build.PNG">
-        <h3>Hands-on circuits</h3>
-        <p>Build real circuits step by step and understand every connection.</p>
-      </div>
-
-      <div class="feature">
-        <img src="assets/levels.PNG">
-        <h3>Progressive challenges</h3>
-        <p>Carefully designed levels that build intuition naturally.</p>
-      </div>
-
-      <div class="feature">
-        <img src="assets/hint.PNG">
-        <h3>Smart hints</h3>
-        <p>Get help without spoilers when you need it.</p>
-      </div>
-
-      <div class="feature">
-        <img src="assets/success.PNG">
-        <h3>Instant feedback</h3>
-        <p>See current flow and success the moment your circuit works.</p>
-      </div>
+    <div class="floating f2">
+      <img src="assets/hint.PNG">
     </div>
-  </section>
 
-  <footer>
-    © 2026 CircuitLab Designer ·
-    <a href="support.html">Support</a> ·
-    <a href="privacy.html">Privacy Policy</a>
-  </footer>
+    <div class="floating f3">
+      <img src="assets/success.PNG">
+    </div>
+  </div>
+</main>
+
+<section>
+  <h2>Why CircuitLab Designer?</h2>
+  <div class="features">
+    <div class="feature">
+      <img src="assets/circuit_build.PNG">
+      <h3>Real circuit logic</h3>
+      <p>Learn how electricity truly flows, not just symbols.</p>
+    </div>
+
+    <div class="feature">
+      <img src="assets/levels.PNG">
+      <h3>Progressive learning</h3>
+      <p>Each level builds intuition step by step.</p>
+    </div>
+
+    <div class="feature">
+      <img src="assets/hint.PNG">
+      <h3>Guided hints</h3>
+      <p>Help when you need it, never spoilers.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 CircuitLab Designer ·
+  <a href="support.html">Support</a> ·
+  <a href="privacy.html">Privacy Policy</a>
+</footer>
+
 </body>
 </html>
