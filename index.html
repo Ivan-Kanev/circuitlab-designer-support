@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CircuitLab Designer</title>
 
-<meta name="description" content="Learn electrical circuits visually. Build, connect, and see current flow in real time." />
+<title>CircuitLab Designer</title>
+<meta name="description" content="Learn electrical circuits visually. Build circuits, toggle switches, and see current flow instantly." />
 
 <style>
 :root {
   --bg: radial-gradient(1200px circle at top, #eef3ff, #ffffff);
-  --primary: #2563eb;
+  --card: rgba(255,255,255,0.8);
   --text: #0f172a;
   --muted: #64748b;
-  --card: rgba(255,255,255,0.75);
+  --primary: #2563eb;
 }
 
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif;
@@ -42,11 +43,11 @@ nav a:hover { color: var(--primary); }
 
 .hero {
   max-width: 1100px;
-  margin: 80px auto;
+  margin: 90px auto;
   padding: 0 24px;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
+  gap: 64px;
   align-items: center;
 }
 
@@ -66,8 +67,8 @@ h1 {
 }
 
 .badges img {
-  height: 54px;
-  transition: transform 0.3s ease;
+  height: 56px;
+  transition: transform .3s ease;
 }
 
 .badges img:hover {
@@ -94,7 +95,7 @@ section {
 
 .card {
   background: var(--card);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
   border-radius: 20px;
   padding: 28px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.06);
@@ -102,7 +103,7 @@ section {
 
 footer {
   text-align: center;
-  padding: 40px 24px;
+  padding: 48px 24px;
   color: var(--muted);
 }
 </style>
@@ -143,7 +144,7 @@ footer {
     <div class="card">🧠 Learn series & parallel logic</div>
     <div class="card">📴 Works fully offline</div>
     <div class="card">🔒 No accounts, no tracking</div>
-    <div class="card">✨ Clean, distraction-free UI</div>
+    <div class="card">✨ Clean, intuitive interface</div>
   </div>
 </section>
 
