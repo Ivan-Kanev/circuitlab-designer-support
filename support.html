@@ -4,22 +4,89 @@
 <meta charset="UTF-8">
 <title>Support – CircuitLab Designer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="index.html">
+
 <style>
-body { background:linear-gradient(#f8fafc,#eef2ff); font-family:inherit; }
-.container { max-width:900px; margin:auto; padding:100px 24px; }
-.card {
-  background:#fff;
-  border-radius:26px;
-  padding:40px;
-  box-shadow:0 30px 80px rgba(0,0,0,.15);
+:root {
+  --bg1:#f8fafc;
+  --bg2:#eef2ff;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --radius:26px;
 }
-h1 { margin-bottom:20px; }
-p { color:#475569; line-height:1.7; }
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(800px 400px at 10% -10%, #e0e7ff, transparent),
+    radial-gradient(800px 400px at 90% 10%, #fef3c7, transparent),
+    linear-gradient(var(--bg1),var(--bg2));
+}
+
+header {
+  max-width:1200px;
+  margin:auto;
+  padding:28px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+nav a {
+  margin-left:24px;
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:500;
+}
+nav a:hover { color:var(--text); }
+
+.container {
+  max-width:900px;
+  margin:auto;
+  padding:110px 24px;
+}
+
+.card {
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:48px;
+  box-shadow:0 40px 90px rgba(0,0,0,.18);
+}
+
+h1 {
+  font-size:40px;
+  margin-bottom:20px;
+}
+
+p {
+  font-size:17px;
+  line-height:1.75;
+  color:var(--muted);
+}
+
+.contact {
+  margin-top:32px;
+  padding:22px;
+  border-radius:18px;
+  background:#f1f5f9;
+  font-weight:600;
+  color:#0f172a;
+}
+
+footer {
+  text-align:center;
+  padding:50px 24px;
+  color:var(--muted);
+}
 </style>
 </head>
 
 <body>
+
 <header>
   <strong>CircuitLab Designer</strong>
   <nav>
@@ -29,20 +96,30 @@ p { color:#475569; line-height:1.7; }
   </nav>
 </header>
 
-<div class="container">
+<main class="container">
   <div class="card">
     <h1>Support</h1>
+
     <p>
-      CircuitLab Designer is built to be simple, offline, and distraction-free.
-      If you have questions, suggestions, or feedback, we’d love to hear from you.
+      CircuitLab Designer is designed to be simple, focused, and distraction-free.
+      The app works fully offline and does not require accounts or setup.
     </p>
+
     <p>
-      📩 Contact: <strong>ivan.kanev.dev@gmail.com</strong>
+      If you have questions, feature suggestions, or feedback,
+      feel free to reach out — every message is read personally.
     </p>
-    <p>
-      No accounts. No ads. No tracking. Just learning.
-    </p>
+
+    <div class="contact">
+      📩 Contact email: <br>
+      <strong>ikanev@icloud.com</strong>
+    </div>
   </div>
-</div>
+</main>
+
+<footer>
+  © 2026 CircuitLab Designer
+</footer>
+
 </body>
 </html>
